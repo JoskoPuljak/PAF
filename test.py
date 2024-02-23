@@ -1,0 +1,1 @@
+print("dobar dan svijete")
