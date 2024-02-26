@@ -1,40 +1,38 @@
-#######Neurednije, ali točnije rješenje#########################
+#Urednije, input je tuple a ne zasebne koordinate
+#Ne radi kod ako se upiše nešto što nije tuple
+#Ne radi na svim verzijama pythona ovisno o tome je li python verzija prepoznaje input kao tuple ili string
 
 check=False
+pokusaj_ponovno=False
 while check==False:
-    x1=input("Upiši prvu koordinatu prve točke ")
-    if x1.isdigit()==False:
-        print("Ponovno upišite točku")
+    if pokusaj_ponovno==True:
+        print("Pokusaj ponovno")
+    c=input("Upisi u formatu x,y koordinate prve tocke")
+    if len(c)!=2:
+        check=False
+    elif isinstance(c[0],int)==False or isinstance(c[1],int)==False:
+        check=False
+        
+    else:
+        check=True
+    pokusaj_ponovno=True
+check=False
+pokusaj_ponovno=False
+while check==False:
+    if pokusaj_ponovno==True:
+        print("Pokusaj ponovno")
+    d=input("Upisi u fomatu x,y koordinate druge tocke")
+    if len(d)!=2:
+        check=False
+    elif isinstance(d[0],int)==False or isinstance(d[1],int)==False:
         check=False
     else:
         check=True
+    pokusaj_ponovno=True
 
-check=False
-while check==False:
-    y1=input("Upiši drugu koordinatu prve točke")
-    if y1.isdigit()==False:
-        print("Ponovno upišite točku")
-        check=False
-    else:
-        check=True
 
-check=False
-while check==False:
-    x2=input("Upiši prvu koordinatu druge točke ")
-    if x2.isdigit()==False:
-        print("Ponovno upišite točku")
-        check=False
-    else:
-        check=True
-check=False
-while check==False:
-    y2=input("Upiši drugu koordinatu druge točke")
-    if y2.isdigit()==False:
-        print("Ponovno upišite točku")
-        check=False
-    else:
-        check=True
-
-k=(int(y2)-int(y1))/(int(x2)-int(x1))
-l=int(y1)-k*int(x1)
+a=tuple(int(item) for item in c)
+b=tuple(int(item) for item in d)
+k=(float(b[1])-float(a[1]))/(float(b[0])-float(a[0]))
+l=float(a[1])-k*float(a[0])
 print ("Pravac je y={}x+{}".format(k,l))
