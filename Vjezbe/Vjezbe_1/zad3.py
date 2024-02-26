@@ -1,7 +1,7 @@
 check=False
-pokusaj=False
+pokusaj_ponovno=False
 while check==False:
-    if pokusaj==True:
+    if pokusaj_ponovno==True:
         print("Pokusaj ponovno")
     c=input("Upisi u formatu x,y koordinate prve tocke")
     if len(c)!=2:
@@ -10,11 +10,11 @@ while check==False:
         check=False
     else:
         check=True
-    pokusaj=True
+    pokusaj_ponovno=True
 check=False
-pokusaj=False
+pokusaj_ponovno=False
 while check==False:
-    if pokusaj==True:
+    if pokusaj_ponovno==True:
         print("Pokusaj ponovno")
     d=input("Upisi u fomatu x,y koordinate druge tocke")
     if len(d)!=2:
@@ -23,7 +23,7 @@ while check==False:
         check=False
     else:
         check=True
-    pokusaj=True
+    pokusaj_ponovno=True
 
 
 a=tuple(int(item) for item in c)
