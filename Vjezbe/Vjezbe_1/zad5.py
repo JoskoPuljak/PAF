@@ -1,3 +1,7 @@
+#Showanje ili savanje je dio funkcije kao opcionalna varijabla
+#Ako je varijabla prazna ili "show" - prikazuje
+#Ako je varijabla bilo što drugo, savea u pdf s imenom varijable
+
 import matplotlib.pyplot as plt
 def pravac(a,b,c="show"):
     k=(float(b[1])-float(a[1]))/(float(b[0])-float(a[0]))
