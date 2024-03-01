@@ -2,8 +2,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 #pocetni uvijeti
-F=int(input("Upiši silu u Njutnima"))
-m=int(input("Upiši masu u kilogramima"))
+F=int(input("Upisi silu u Njutnima"))
+m=int(input("Upisi masu u kilogramima"))
 #a/t graf
 t=np.linspace(0,10,100)
 a_val=F/m
