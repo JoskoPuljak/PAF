@@ -2,8 +2,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
 #pocetni uvijeti
-F=int(input("Upiši silu u Njutnima"))
-m=int(input("Upiši masu u kilogramima"))
+F=int(input("Upisi silu u Njutnima"))
+m=int(input("Upisi masu u kilogramima"))
 #a/t graf
 t=np.linspace(0,10,100)
 a_val=F/m
@@ -15,13 +15,15 @@ plt.plot(t,a,color="purple")
 #v/t graf
 dt=0.1
 dv=a*dt
-v=np.array({dv*i for i in range(len(t))})
+v=[dv*i for i in range(0,100)]
+
+print(v)
 plt.subplot(3,1,2)
 plt.ylabel("v/m/s")
 plt.title("v/t graf")
 plt.plot(t,v,color="pink")
 #x/t graf
-x=np.array({i*dt for in in v})
+
 plt.subplot(3,1,3)
 plt.plot(t,x,color="blue")
 plt.ylabel("x/m")
