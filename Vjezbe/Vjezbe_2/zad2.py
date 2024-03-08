@@ -26,7 +26,7 @@ def kosi_hitac(v0,theta):
     for i in dy:
         y.append(s)
         s+=i
-    print(y)
+
     #y/x graf
     plt.subplot(1,3,1)
     plt.plot(x,y, "r")
@@ -45,7 +45,6 @@ def kosi_hitac(v0,theta):
     plt.xlabel("t/s")
     plt.ylabel("y/m")
     plt.title("y/t graf")
-    print()
     plt.show()
 kosi_hitac(50,np.radians(40))
 
