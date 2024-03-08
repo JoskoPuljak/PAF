@@ -4,7 +4,7 @@ import math as mt
 import numpy as np
 
 #pocetni uvijeti
-def zad2(v0,theta):
+def kosi_hitac(v0,theta):
     #vrijeme
     dt=0.1
     t=[i*dt for i in range (0,101)]
@@ -47,5 +47,5 @@ def zad2(v0,theta):
     plt.title("y/t graf")
     print()
     plt.show()
-zad2(50,np.radians(40))
+kosi_hitac(50,np.radians(40))
 

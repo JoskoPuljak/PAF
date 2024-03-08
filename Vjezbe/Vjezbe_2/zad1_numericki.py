@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 #pocetni uvijeti
-def zad1(F,m):
+def jednoliko_gibanje(F,m):
     #a/t graf
     a_val=F/m
     dt=0.1
@@ -33,4 +33,4 @@ def zad1(F,m):
     plt.title("x/t graf")
     plt.show()
 
-zad1(20,5)
+jednoliko_gibanje(20,5)
