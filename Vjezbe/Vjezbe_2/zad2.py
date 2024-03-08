@@ -1,8 +1,9 @@
 #moduli
 import matplotlib.pyplot as plt
 import math as mt
+import numpy as np
 
-#početni uvijeti
+#pocetni uvijeti
 def zad2(v0,theta):
     #vrijeme
     dt=0.1
@@ -17,8 +18,34 @@ def zad2(v0,theta):
     #put
     dx=v0*mt.cos(theta)*dt 
     x=[dx*i for i in range (0,101)]
+   
+    dy=[i*dt for i in vy]
+    y=[]
+    s=0
 
-    plt.plot(t,vy)
+    for i in dy:
+        y.append(s)
+        s+=i
+    print(y)
+    #y/x graf
+    plt.subplot(1,3,1)
+    plt.plot(x,y, "r")
+    plt.xlabel("x/m")
+    plt.ylabel("y/m")
+    plt.title("y/x graf")
+    plt.subplot(1,3,2)
+    #x/t graf
+    plt.plot(t,x, "b")
+    plt.xlabel("t/s")
+    plt.ylabel("x/m")
+    plt.title("x/t graf")
+    plt.subplot(1,3,3)
+    #y/t graf
+    plt.plot(t,y,"purple")
+    plt.xlabel("t/s")
+    plt.ylabel("y/m")
+    plt.title("y/t graf")
+    print()
     plt.show()
-zad2(5,30)
+zad2(50,np.radians(40))
 
