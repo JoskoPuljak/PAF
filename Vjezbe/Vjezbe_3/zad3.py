@@ -1,8 +1,8 @@
 import math as mt
 
 import arithm as stat
-print(stat.aritm_sred(1,2,2,2,3,4,5,6,7,8))
-print(stat.stand_dev(1,2,2,2,3,4,5,6,7,8))
+print(stat.aritm_sred([1,2,2,2,3,4,5,6,7,8]))
+print(stat.stand_dev([1,2,2,2,3,4,5,6,7,8]))
 
 
 import numpy as np

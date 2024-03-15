@@ -1,7 +1,6 @@
 #a)
 import math as mt
-def aritm_sred(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10):
-    lista=[x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+def aritm_sred(lista):
     sum=0
     for i in lista:
         sum+=i
@@ -9,11 +8,10 @@ def aritm_sred(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10):
     return(sredina)
 
 
-def stand_dev(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10):
-    lista=[x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+def stand_dev(lista):
     sum=0
     for i in lista:
-        sum+=(i-aritm_sred(x1,x2,x3,x4,x5,x6,x7,x8,x9,x10))**2
+        sum+=(i-aritm_sred(lista))**2
     standardna=mt.sqrt(sum/(len(lista)*(len(lista)-1)))
     return(standardna)
 
