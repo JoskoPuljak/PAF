@@ -15,19 +15,20 @@ class Particle:
         self.t=[0]
     def __move(self,dt):
         g=9.81
-        self.t.append(self.t[len(self.t)-1] +dt)
-        self.x.append(self.x[len(self.x)-1]+vx*dt)
-        self.vy.append(self.vy[len(self.vy)-1]+g*dt)
-        self.y.append(self.y[len(self.y)-1]+self.vy[len(self.vy)-1]*dt)
+        self.t.append(self.t[-1] +dt)
+        self.x.append(self.x[-1]+self.vx*dt)
+        self.vy.append(self.vy[-1]-g*dt)
+        self.y.append(self.y[-1]+self.vy[-1]*dt)
         
         
 
 
 
     def range(self,dt):
-        while self.y[len(self.y)-1]>0:
-            __move(dt)
-        domet=self.x[len(self.x)-1]
+        while self.y[-1]>=0:
+            p1.__move(dt)
+            
+        domet=self.x[-1]
         return domet
 
 p1=Particle(5,30,0,0)
