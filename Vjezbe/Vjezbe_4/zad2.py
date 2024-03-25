@@ -15,9 +15,13 @@ def relativna_pogreska(dt):
     p1.reset()
     return rel_pogreska
 
-
+#polja
 t=[i*0.0001 for i in range(1,1001)]
 pogreska=[relativna_pogreska(i*0.0001) for i in range(1,1001)]
 
-plt.plot(t,pogreska)
+#graf
+plt.plot(t,pogreska,color="purple")
+plt.xlabel("dt/s")
+plt.ylabel("pogreška u %")
+plt.title("Ovisnost pogreske o dt-u")
 plt.show()
