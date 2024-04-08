@@ -14,7 +14,7 @@ Analitic_list=[Analiticko for i in raspon]
 plt.scatter(list(raspon),Prav_donja,color="blue")
 plt.scatter(list(raspon),Prav_gornja,color="red")
 plt.scatter(list(raspon),Trap,color="purple")
-plt.scatter(list(raspon),Analitic_list,color="orange",s=5)
+plt.plot(list(raspon),Analitic_list,color="orange")
 plt.xlabel("broj koraka")
 plt.ylabel("vrijednost integrala")
 plt.title("graf vrijednosti integrala u ovisnosti o broju koraka")
