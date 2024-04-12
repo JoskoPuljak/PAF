@@ -36,6 +36,15 @@ class HarmonicOscillator:
         plt.show()
     def plot_x(self,colour,size=30):
         plt.scatter(self.t,self.x,color=colour,s=size)
+    def period(self,dt):
+        while self.x[-1]<=self.x[0]:
+            self.t.append(self.t[-1]+dt)
+            self.a.append(-self.k/self.m*self.x[-1])
+            self.v.append(self.v[-1]+(self.a[-1]*dt))
+            self.x.append(self.x[-1]+(self.v[-1]*dt))
+        return self.t[-1]
+
+
 
 
 
