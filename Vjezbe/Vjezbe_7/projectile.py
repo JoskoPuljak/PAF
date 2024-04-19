@@ -34,8 +34,41 @@ class Projectile:
         self.x.append(self.x[-1]+self.vx[-1]*dt)
         self.y.append(self.y[-1]+self.vy[-1]*dt)
         self.ax.append(-1*sgn(self.vx[-1])*self.constant*self.vx[-1]**2)
-        self.ay.append(-g-(-1*sgn(self.vy[-1])*self.constant*self.vy[-1]**2))
+        self.ay.append(-g-(1*sgn(self.vy[-1])*self.constant*self.vy[-1]**2))
+    def __Rungemove(self,dt):
+        g=9.81
+        self.t.append(self.t[-1] +dt)
+        k1vx=self.ax[-1]*dt
+        k1x=self.vx[-1]*dt
+        k2vx=-1*sgn(self.vx[-1]+k1vx/2)*self.constant*(self.vx[-1]+k1vx/2)**2*dt
+        k2x=(self.vx[-1]+k1vx/2)*dt
+        k3vx=-1*sgn(self.vx[-1]+k2vx/2)*self.constant*(self.vx[-1]+k2vx/2)**2*dt
+        k3x=(self.vx[-1]+k2vx/2)*dt
+        k4vx=-1*sgn(self.vx[-1]+k3vx)*self.constant*(self.vx[-1]+k3vx)**2*dt
+        k4x=(self.vx[-1]+k3vx)*dt
+        self.vx.append(self.vx[-1]+(1/6)*(k1vx+2*k2vx+3*k3vx+k4vx))
+        self.x.append(self.x[-1]+(1/6)*(k1x+2*k2x+3*k3x+k4x))
+        
+        k1vy=self.ay[-1]*dt
+        k1y=self.vy[-1]*dt
+        k2vy=(-g-(1*sgn(self.vy[-1]+k1vy/2)*self.constant*(self.vy[-1]+k1vy/2)**2))*dt
+        k2y=(self.vy[-1]+k1vy/2)*dt
+        k3vy=(-g-(1*sgn(self.vy[-1]+k2vy/2)*self.constant*(self.vy[-1]+k2vy/2)**2))*dt
+        k3y=(self.vy[-1]+k2vy/2)*dt
+        k4vy=(-g-(1*sgn(self.vy[-1]+k3vy)*self.constant*(self.vy[-1]+k3vy)**2))*dt
+        k4y=(self.vy[-1]+k3vy)*dt
 
+        self.vy.append(self.vy[-1]+(1/6)*(k1vy+2*k2vy+3*k3vy+k4vy))
+        self.y.append(self.y[-1]+(1/6)*(k1y+2*k2y+3*k3y+k4vy))
+
+        self.ax.append(-1*sgn(self.vx[-1])*self.constant*self.vx[-1]**2)
+        self.ay.append(-g-(1*sgn(self.vy[-1])*self.constant*self.vy[-1]**2))
+    def Runge_range(self,dt):
+        while self.y[-1]>=0:
+            self.__Rungemove(dt)
+            
+        domet=self.x[-1]
+        return domet
     
         
     def range(self,dt):
@@ -50,4 +83,5 @@ class Projectile:
         plt.ylabel("y/m")
         plt.title("x/y graf")
         
-    
+
+
