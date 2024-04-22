@@ -3,7 +3,7 @@ import numpy as np
 import harmonic_oscillator as harm
 import matplotlib.pyplot as plt
 #definiranje objekta
-My_oscillator=harm.HarmonicOscillator(10,0.1,0,0.3)
+My_oscillator=harm.HarmonicOscillator(10,0.1,10,0.3)
 #racunanje reltativne pogreske za dt od 0.0001 do 0.1
 dt=np.arange(0.0001,0.1,0.0001)
 Analyitic_period=2*np.pi*np.sqrt(0.1/10)
@@ -21,3 +21,4 @@ plt.ylabel("relativna pogreska u %")
 plt.title("Ovisnost pogreske o dt-u")
 plt.show()
 #što je veći dt, veća je pogreska
+print(My_oscillator.period(0.01), My_oscillator.period(0.001),Analyitic_period)
