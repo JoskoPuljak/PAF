@@ -15,7 +15,7 @@ for i in dt:
     lista_rel_pogreske.append(rel_pogreska)
 
 #plotanje grafa pogreske
-plt.plot(dt,lista_rel_pogreske,color="green")
+plt.plot(dt,lista_rel_pogreske)
 plt.xlabel("dt/s")
 plt.ylabel("relativna pogreska u %")
 plt.title("Ovisnost pogreske o dt-u")

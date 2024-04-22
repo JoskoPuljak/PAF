@@ -36,19 +36,51 @@ class HarmonicOscillator:
         plt.show()
     def plot_x(self,colour,size=30):
         plt.scatter(self.t,self.x,color=colour,s=size)
+    #period
     def period(self,dt):
-        while self.x[-1]<=self.x[0]:
-            self.t.append(self.t[-1]+dt)
-            self.a.append(-self.k/self.m*self.x[-1])
-            self.v.append(self.v[-1]+(self.a[-1]*dt))
-            self.x.append(self.x[-1]+(self.v[-1]*dt))
-        return self.t[-1]
-
-
-
-
-
-
+        if self.x[0]+(self.v[-1]+(-self.k/self.m*self.x[-1])*dt)*dt<self.x[-1]:
+            while self.x[-1]+(self.v[-1]+(-self.k/self.m*self.x[-1])*dt)*dt<self.x[-1]:
+                self.t.append(self.t[-1]+dt)
+                self.a.append(-self.k/self.m*self.x[-1])
+                self.v.append(self.v[-1]+(self.a[-1]*dt))
+                self.x.append(self.x[-1]+(self.v[-1]*dt))
+            a=self.t[-1]
+            while self.x[-1]+(self.v[-1]+(-self.k/self.m*self.x[-1])*dt)*dt>self.x[-1]:
+                self.t.append(self.t[-1]+dt)
+                self.a.append(-self.k/self.m*self.x[-1])
+                self.v.append(self.v[-1]+(self.a[-1]*dt))
+                self.x.append(self.x[-1]+(self.v[-1]*dt))
+            while self.x[-1]+(self.v[-1]+(-self.k/self.m*self.x[-1])*dt)*dt<self.x[-1]:
+                self.t.append(self.t[-1]+dt)
+                self.a.append(-self.k/self.m*self.x[-1])
+                self.v.append(self.v[-1]+(self.a[-1]*dt))
+                self.x.append(self.x[-1]+(self.v[-1]*dt))
+            b=self.t[-1]
+            
+            return b-a
+        else:
+            while self.x[-1]+(self.v[-1]+(-self.k/self.m*self.x[-1])*dt)*dt>self.x[-1]:
+                self.t.append(self.t[-1]+dt)
+                self.a.append(-self.k/self.m*self.x[-1])
+                self.v.append(self.v[-1]+(self.a[-1]*dt))
+                self.x.append(self.x[-1]+(self.v[-1]*dt))
+            a=self.t[-1]
+            while self.x[-1]+(self.v[-1]+(-self.k/self.m*self.x[-1])*dt)*dt<self.x[-1]:
+                self.t.append(self.t[-1]+dt)
+                self.a.append(-self.k/self.m*self.x[-1])
+                self.v.append(self.v[-1]+(self.a[-1]*dt))
+                self.x.append(self.x[-1]+(self.v[-1]*dt))
+            while self.x[-1]+(self.v[-1]+(-self.k/self.m*self.x[-1])*dt)*dt>self.x[-1]:
+                self.t.append(self.t[-1]+dt)
+                self.a.append(-self.k/self.m*self.x[-1])
+                self.v.append(self.v[-1]+(self.a[-1]*dt))
+                self.x.append(self.x[-1]+(self.v[-1]*dt))
+            b=self.t[-1]
+           
+            return b-a
+            
+             
+             
 
 
 
