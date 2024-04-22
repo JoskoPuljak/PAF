@@ -25,7 +25,8 @@ My_oscillator.reset()
 My_oscillator.oscillate(2,0.001)
 My_oscillator.plot_x("blue",20)
 #Analytic
-Analytic=[0.3*np.cos(np.sqrt(10/0.1)*t) for t in My_oscillator.t]
+phi=-np.sign(My_oscillator.v[0])*np.arccos(My_oscillator.x[0]/max(My_oscillator.x))
+Analytic=[max(My_oscillator.x)*np.cos(np.sqrt(10/0.1)*t+phi) for t in My_oscillator.t]
 plt.plot(My_oscillator.t,Analytic, color="black", linewidth="3")
 My_oscillator.reset()
 
