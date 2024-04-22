@@ -1,4 +1,4 @@
-y#moduli
+#moduli
 import projectile as proj
 import matplotlib.pyplot as plt
 
