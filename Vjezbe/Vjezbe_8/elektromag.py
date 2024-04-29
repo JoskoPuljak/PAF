@@ -12,11 +12,9 @@ class elektromag:
         self.a=[(self.q/self.m)*(self.E+np.cross(self.v[-1],self.B))]
         self.x=[np.array([0,0,0])]
     def reset(self):
-        self.E=self.E[0]
-        self.B=self.B[0]
-        self.v=self.v[0]
-        self.a=self.a[0]
-        self.x=self.x[0]
+        self.v=[self.v[0]]
+        self.a=[self.a[0]]
+        self.x=[self.x[0]]
 
     def __move(self,dt):
         self.v.append(self.v[-1]+self.a[-1]*dt)
@@ -31,9 +29,9 @@ class elektromag:
         return x,y,z
     def __Rungemove(self,dt):
         k1v=self.a[-1]*dt
-        k2v=(self.q/self.m)*(self.E+np.cross((self.v[-1]+k1v/2),self.B))
-        k3v=(self.q/self.m)*(self.E+np.cross((self.v[-1]+k2v/2),self.B))
-        k4v=(self.q/self.m)*(self.E+np.cross((self.v[-1]+k3v),self.B))
+        k2v=(self.q/self.m)*(self.E+np.cross((self.v[-1]+k1v/2),self.B))*dt
+        k3v=(self.q/self.m)*(self.E+np.cross((self.v[-1]+k2v/2),self.B))*dt
+        k4v=(self.q/self.m)*(self.E+np.cross((self.v[-1]+k3v),self.B))*dt
         k1x=self.v[-1]*dt
         k2x=(self.v[-1]+k1v/2)*dt
         k3x=(self.v[-1]+k2v/2)*dt
