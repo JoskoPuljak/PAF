@@ -20,7 +20,9 @@ Et_runge=Elektron.Runge_trajectory(0.01,20)
 ax.plot(Et_runge[0],Et_runge[1],Et_runge[2],color="yellow",linestyle="--")
 Pt_runge=Proton.Runge_trajectory(0.01,20)
 ax.plot(Pt_runge[0],Pt_runge[1],Pt_runge[2],color="red",linestyle="--")
-
+ax.set_xlabel("x")
+ax.set_ylabel("y")
+ax.set_zlabel("z")
 plt.legend(["Elektron Euler","Proton Euler","Elektron Runge","Proton Runge"])
 plt.show()
 #resetanje
