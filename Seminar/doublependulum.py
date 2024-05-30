@@ -3,15 +3,15 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as ani
 
 class duplo_njihalo:
-    def __init__(self,m1,m2,l1,l2,theta1,theta2,phi1,phi2):
+    def __init__(self,m1,m2,l1,l2,theta1,theta2,omega1,omega2):
         self.m1=m1
         self.m2=m2
         self.l1=l1
         self.l2=l2
         self.theta1=[np.radians(theta1)]
         self.theta2=[np.radians(theta2)]
-        self.phi1=[phi1]
-        self.phi2=[phi2]
+        self.omega1=[omega1]
+        self.omega2=[omega2]
         self.g=9.81
         self.alpha1=[(-self.g*(2*self.m1+self.m2)*np.sin(self.theta1[0])-m2*self.g*np.sin(self.theta1[0]-2*self.theta2[0])-2*np.sin(self.theta1[0]-2*self.theta2[0]*self.m2*(self.theta2[0]**2)*self.l2+(self.theta1[0]**2)*self.l1*np.cos(self.theta1[0]-self.theta2[0])))/(self.l1*(2*self.m1+self.m2-self.m2*np.cos(2*self.theta1[0]-2*self.theta2[0])))]
         self.alpha2=[(2*np.sin(self.theta1[0]-self.theta2[0])*((self.theta1[0]**2)*self.l1*(self.m1+self.m2)+self.g*(self.m1+self.m2)*np.cos(self.theta1[0])+(self.theta2[0]**2)*self.l2*self.m2*np.cos(self.theta1[0]-self.theta2[0])))/(self.l2*(2*self.m1+self.m2-self.m2*np.cos(2*self.theta1[0]-2*self.theta2[0])))]
@@ -20,8 +20,8 @@ class duplo_njihalo:
     def reset(self):
         self.theta1=[theta1[0]]
         self.theta2=[theta2[0]]
-        self.phi1=[phi1[0]]
-        self.phi2=[phi2[0]]
+        self.omega1=[omega1[0]]
+        self.omega2=[omega2[0]]
         self.alpha1=[alpha1[0]]
         self.alpha2=[alpha1[0]]
         self.x1=[]
@@ -29,10 +29,10 @@ class duplo_njihalo:
     def move(self,dt):
         self.x1.append(np.array([self.l1*np.sin(self.theta1[-1]),-self.l1*np.cos(self.theta1[-1])]))
         self.x2.append(self.x1[-1]+np.array([self.l2*np.sin(self.theta2[-1]),-self.l2*np.cos(self.theta2[-1])]))
-        self.phi1.append(self.phi1[-1]+self.alpha1[-1]*dt)
-        self.phi2.append(self.phi2[-1]+self.alpha2[-1]*dt)
-        self.theta1.append(self.theta1[-1]+self.phi1[-1]*dt)
-        self.theta2.append(self.theta2[-1]+self.phi2[-1]*dt)
+        self.omega1.append(self.omega1[-1]+self.alpha1[-1]*dt)
+        self.omega2.append(self.omega2[-1]+self.alpha2[-1]*dt)
+        self.theta1.append(self.theta1[-1]+self.omega1[-1]*dt)
+        self.theta2.append(self.theta2[-1]+self.omega2[-1]*dt)
         self.alpha1.append((-self.g*(2*self.m1+self.m2)*np.sin(self.theta1[-1])-self.m2*self.g*np.sin(self.theta1[-1]-2*self.theta2[-1])-2*np.sin(self.theta1[-1]-2*self.theta2[-1]*self.m2*(self.theta2[-1]**2)*self.l2+(self.theta1[-1]**2)*self.l1*np.cos(self.theta1[-1]-self.theta2[-1])))/(self.l1*(2*self.m1+self.m2-self.m2*np.cos(2*self.theta1[-1]-2*self.theta2[-1]))))
         self.alpha2.append((2*np.sin(self.theta1[-1]-self.theta2[-1])*((self.theta1[0]**2)*self.l1*(self.m1+self.m2)+self.g*(self.m1+self.m2)*np.cos(self.theta1[-1])+(self.theta2[-1]**2)*self.l2*self.m2*np.cos(self.theta1[-1]-self.theta2[-1])))/(self.l2*(2*self.m1+self.m2-self.m2*np.cos(2*self.theta1[-1]-2*self.theta2[-1]))))
     def plot_trajectory(self,dt,t):
@@ -75,8 +75,7 @@ class duplo_njihalo:
             y_4=np.array([y1[i],y2[i]])
             line4.set_data(x_4,y_4)
             return line3,line4,line,line2
-        anim = ani.FuncAnimation(fig, animate, init_func=init, frames=100000, interval=50, blit=True)
-        
+        anim = ani.FuncAnimation(fig, animate, init_func=init, frames=100000, interval=100, blit=True)
         plt.show()
     def plot_trace(self,dt,t):
         for i in np.arange(0,t,dt):
