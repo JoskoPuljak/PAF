@@ -1,10 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as ani
-
+from IPython import display
 class duplo_njihalo:
     def __init__(self,m1,m2,l1,l2,theta1,theta2,omega1,omega2):
-        self.m1=m1
+        self.m1=m1 
         self.m2=m2
         self.l1=l1
         self.l2=l2
@@ -35,7 +35,7 @@ class duplo_njihalo:
         self.theta2.append(self.theta2[-1]+self.omega2[-1]*dt)
         self.alpha1.append((-self.g*(2*self.m1+self.m2)*np.sin(self.theta1[-1])-self.m2*self.g*np.sin(self.theta1[-1]-2*self.theta2[-1])-2*np.sin(self.theta1[-1]-2*self.theta2[-1]*self.m2*(self.theta2[-1]**2)*self.l2+(self.theta1[-1]**2)*self.l1*np.cos(self.theta1[-1]-self.theta2[-1])))/(self.l1*(2*self.m1+self.m2-self.m2*np.cos(2*self.theta1[-1]-2*self.theta2[-1]))))
         self.alpha2.append((2*np.sin(self.theta1[-1]-self.theta2[-1])*((self.theta1[0]**2)*self.l1*(self.m1+self.m2)+self.g*(self.m1+self.m2)*np.cos(self.theta1[-1])+(self.theta2[-1]**2)*self.l2*self.m2*np.cos(self.theta1[-1]-self.theta2[-1])))/(self.l2*(2*self.m1+self.m2-self.m2*np.cos(2*self.theta1[-1]-2*self.theta2[-1]))))
-    def plot_trajectory(self,dt,t):
+    def plot_trajectory(self,dt,t,Save=False):
         for i in np.arange(0,t,dt):
             self.move(dt)
         x1=np.array(self.x1)[:,0]
@@ -75,9 +75,12 @@ class duplo_njihalo:
             y_4=np.array([y1[i],y2[i]])
             line4.set_data(x_4,y_4)
             return line3,line4,line,line2
-        anim = ani.FuncAnimation(fig, animate, init_func=init, frames=100000, interval=100, blit=True)
+        anim = ani.FuncAnimation(fig, animate, init_func=init, frames=667, interval=20, blit=True)
         plt.show()
-    def plot_trace(self,dt,t):
+        if Save:
+            writer=ani.FFMpegWriter(fps=30)
+            anim.save("test1.gif",writer=writer)
+    def plot_trace(self,dt,t,Save=False):
         for i in np.arange(0,t,dt):
             self.move(dt)
         x1=np.array(self.x1)[:,0]
@@ -122,9 +125,12 @@ class duplo_njihalo:
             y_5=y2[:i]
             line5.set_data(x_5,y_5)
             return line5,line3,line4,line,line2
-        anim = ani.FuncAnimation(fig, animate, init_func=init, frames=100000, interval=5, blit=True)
+        anim = ani.FuncAnimation(fig, animate, init_func=init, frames=667, interval=20, blit=True)
         
         plt.show()
+        if Save:
+            writer=ani.FFMpegWriter(fps=30)
+            anim.save("test2.gif",writer=writer)
     def plot_picture(self,dt,t):
         for i in np.arange(0,t,dt):
             self.move(dt)
